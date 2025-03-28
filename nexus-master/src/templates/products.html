@@ -74,50 +74,15 @@
                     <div class="widget categories">
                         <h4 class="widget-title">All Categories</h4>
                         <ul class="categories-list">
-                            <li>
-                                <a href="#">
-                                    <i class="lni-dinner"></i>
-                                    Hotel & Travels <span class="category-counter">(5)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="lni-control-panel"></i>
-                                    Services <span class="category-counter">(8)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="lni-github"></i>
-                                    Pets <span class="category-counter">(2)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="lni-coffee-cup"></i>
-                                    Restaurants <span class="category-counter">(3)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="lni-home"></i>
-                                    Real Estate <span class="category-counter">(4)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="lni-pencil"></i>
-                                    Jobs <span class="category-counter">(5)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="lni-display"></i>
-                                    Electronics <span class="category-counter">(9)</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                          {% for ctg in categories %}
+                              <li>
+                                  <a href="#">
+                                      <i class="lni-dinner"></i> {{ categories }} <span class="category-counter">(5)</span>
+                                  </a>
+                              </li>
+                          {% endfor %}
+
+{#                    ?#}
                     <div class="widget">
                         <h4 class="widget-title">Advertisement</h4>
                         <div class="add-box">
@@ -172,8 +137,7 @@
                                                 <span class="bg-green"><i class="lni-heart"></i></span>
                                                 <span><i class="lni-bookmark"></i></span>
                                             </div>
-                                            <a href="#"><img class="img-fluid"  src="/images/{{product.main_images.0.image}}"
-                                                             alt=""></a>
+                                            <a href="#"><img class="img-fluid"  src="/images/{{product.main_images.0.image}}" alt=""></a>
                                         </figure>
                                         <div class="feature-content">
                                             <div class="product">
@@ -226,13 +190,13 @@
                                             <h4><a href="ads-details.html">{{ product.title }}</a></h4>
                                             <div class="meta-tag">
 <span>
-                                                    <a href="#"><i class="lni-user"></i> John Smith</a>
+                                                    <a href="#"><i class="lni-user"></i>{{ user }}</a>
                                                     </span>
                                                                                                     <span>
-                                                    <a href="#"><i class="lni-map-marker"></i> New York, US</a>
+                                                    <a href="#"><i class="lni-map-marker"></i> {{ product.location }}</a>
                                                     </span>
                                                                                                     <span>
-                                                    <a href="#"><i class="lni-tag"></i> Apple</a>
+                                                    <a href="#"><i class="lni-tag"></i>{{ product.brand }}</a>
                                                     </span>
                                                                                                 </div>
                                             <p class="dsc">{{ product.description }}</p>

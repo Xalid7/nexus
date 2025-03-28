@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Prefetch
 from django.core.paginator import Paginator
-from .models import Product, ProductImage
+
+from category.models import Category
+from .models import Product, ProductImage, Region
 
 
 def product_list(request):
@@ -20,8 +22,13 @@ def product_list(request):
 
 
 def product_detail(request, pk):
-    product = Product.objects.get(pk=pk)
-    ctx = {
+    categories = Category.objects.filter(is_main=True)
+    regions = Region.objects.all()
+    product = Product.objects.prefetch_related('images').get(pk=pk)
 
+    ctx = {
+        "categories": categories,
+        "regions" : regions,
+        "product" : product
     }
     return render(request, 'detail.html', ctx)
