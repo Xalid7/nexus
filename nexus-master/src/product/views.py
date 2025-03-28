@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
 from django.db.models import Prefetch
 from django.core.paginator import Paginator
-
+from django.shortcuts import render, redirect
 from category.models import Category
+from user.models import Profile
+from .forms import ProductForm
 from .models import Product, ProductImage, Region
 
 
@@ -32,3 +33,24 @@ def product_detail(request, pk):
         "product" : product
     }
     return render(request, 'detail.html', ctx)
+
+
+
+
+def product_add(request):
+    if request.method == "POST":
+        form = ProductForm(request.POST)
+        print(form)
+        print(form.is_valid())
+        if form.is_valid():
+            product = form.save(commit=False)
+            profile = Profile.objects.get(user=request.user)
+            print(profile)
+            product.user = profile
+            product.save()
+            return redirect('somewhere')
+    else:
+        form = ProductForm()
+
+    ctx = {'form': form}
+    return render(request, 'product_add.html', ctx)
