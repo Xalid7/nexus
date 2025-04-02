@@ -15,6 +15,5 @@ def main(request):
     }
     return render(request, 'index.html', ctx)
 
-#
-# for i in range(3):
-#     print("salom")
+def contact(request):
+    return render(request, 'contact.html',context={})
