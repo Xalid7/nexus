@@ -48,7 +48,7 @@ def product_add(request):
             print(profile)
             product.user = profile
             product.save()
-            return redirect('somewhere')
+            return redirect('main')
     else:
         form = ProductForm()
 
